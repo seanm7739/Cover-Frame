@@ -1,0 +1,5 @@
+Real time: 152.19	User time: 142.58	Sys time: 1.24	d
+Real time: 135.77	User time: 129.40	Sys time: 1.14	d
+Real time: 2582.17	User time: 2153.83	Sys time: 15.27	d
+Real time: 32.69	User time: 31.15	Sys time: 0.26	d
+Real time: 6824.43	User time: 6640.75	Sys time: 28.13	d

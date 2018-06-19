@@ -1,0 +1,179 @@
+
+
+sub getGoodBoxes{ #The main procedure: to get [$boxnum] good boxes above receptors [$fln]
+	my $filename = shift; 	#pdbqt file name
+	my $prl = shift;	#neighbor percentile low
+	my $prh = shift;	#neighbor percentile hight
+	my $gx = shift;
+	my $gy = shift;
+	my $gz = shift;
+	my $boxnum = shift;
+	my $lr = shift;		#ligand radius
+	my $alpha = shift;	
+	my $beta = shift;
+	my $rmodule = shift;	# 0=lr mod, 1=BestSd mod, 2=manual radius
+	my $gbmod = shift;	# get prh nebor atom. 0=prh of full ball, 1=prh of all nebor of all atom
+	my $mr = shift;		# manual radius
+	my $pushmod = shift;	#pushmod 0=gamma% blueatmom, 1=number of puhmod blueatom 
+	my @a = `java GetGoodBoxes $filename $prl $prh $gx $gy $gz $boxnum $lr $beta $alpha $rmodule $gbmod $mr $pushmod`;
+	chomp @a;
+	my @x;
+	my @y;
+	my @z;
+	my $g=$beta+1;
+	$x[0]=$gx/2; $x[1]=$gx/2*-1;
+	$y[0]=$gy/2; $y[1]=$gy/2*-1;
+	$z[0]=$gz/2; $z[1]=$gz/2*-1;
+	#my @bp; #blue point the atom inside the mol
+	#my @sp; #silver point the atom on the surface
+	#my @bkp; #black point the atom for candidate
+	#my @fp; #first point
+
+		$t = shift @a;
+		#print "$t\n";
+	my $bound = $#a+1;
+	for(my $i=0 ; $i<$bound ; $i++){
+		$t = shift @a;
+		@ta = split(" ",$t);
+		if($ta[0]=~/Surface/){
+			#print "$ta[0]\n";
+			last;
+		}
+		#if($t[0] == "null"){
+		#	last;
+		#}
+		$bp[$i][0] = $ta[0];
+		$bp[$i][1] = $ta[1];
+		$bp[$i][2] = $ta[2];
+	}
+	$bound = $#a+1;
+        for(my $i=0 ; $i<$bound ; $i++){
+                $t = shift @a;
+                #@ta = split(" ",$t);
+                if($t=~/First/){
+			#print "$ta[0]\n";
+                        last;
+                }
+                #if($t[0] == "null"){
+                #       last;
+                #}
+                $sp[$i][0] = $t;
+                $sp[$i][1] = 0;  # 0=red 1=black 2=yellow 
+        }
+	$t = shift @a;
+	@fp = split(" ",$t);   #get the first box
+#print "$bp[0][0] $bp[0][1] $bp[0][2]\n";
+#print "$sp[0][0] $sp[0][1] $sp[0][2]\n";
+#print "$fp[0] $fp[1] $fp[2]\n";
+
+############## initial	
+	bomb($t,$g,$x[0],$x[1],$y[0],$y[1],$z[0],$z[1]);
+	push(@ans,$t);
+####################
+	my $hasb=1;
+	while($hasb==1){
+		$hasb = neighbor_select($g,$x[0],$x[1],$y[0],$y[1],$z[0],$z[1]);
+	}
+	print "@ans";
+
+	$a = shift ;
+	return @result;
+}
+
+sub bomb{
+	my $bc = shift;
+	my @x,@y,@z;
+	my $dd = shift;
+	$x[0]=shift; $x[1]=shift;
+        $y[0]=shift; $y[1]=shift;
+        $z[0]=shift; $z[1]=shift;
+
+	my @ctr = split(" ",$bc);
+	foreach $i(0...$#sp){
+		@pt=split(" ",$sp[$i][0]);
+		if(($sp[$i][1]!=2) && ($x[1]< $pt[0]-$ctr[0] < $x[0]) && ($y[1] < $pt[1]-$ctr[1] < $y[0]) && ($z[1] < $pt[2]-$ctr[2] < $z[0]))
+		{
+			$sp[$i][1]=2;  #bombed 2
+		}
+	}
+        $x[0]=$x[0]*$dd; $x[1]=$x[1]*$dd;
+        $y[0]=$y[0]*$dd; $y[1]=$y[1]*$dd;
+        $z[0]=$z[0]*$dd; $z[1]=$z[1]*$dd;
+
+        foreach $i(0...$#sp){
+                @pt=split(" ",$sp[$i][0]);
+                if($sp[$i][1]==0 && $x[1] < $pt[0]-$ctr[0] < $x[0] && $y[1] < $pt[1]-$ctr[1] < $y[0] && $z[1] < $pt[2]-$ctr[2] < $z[0])
+                {
+                        $sp[$i][1]=1;  #new candidate 1
+                }
+        }
+}
+
+
+
+
+sub neighbor_select{
+
+        my @x,@y,@z;
+        my $dd = shift;
+        $x[0]=shift; $x[1]=shift;
+        $y[0]=shift; $y[1]=shift;
+        $z[0]=shift; $z[1]=shift;
+	my $max=-1;
+	my $maxnum=-1;
+	my @ctr;	
+	my $haveb=0;
+
+	foreach $i(0...$#sp){
+		if($sp[$i][1]==1){
+			my $count=0;
+			@ctr = split(" ",$sp[$i][0]);
+			foreach $j(0...$#sp){
+				@pt=split(" ",$sp[$j][0]);
+				if($sp[$j][1]!=2 && $x[1] < $pt[0]-$ctr[0] < $x[0] && $y[1] < $pt[1]-$ctr[1] < $y[0] && $z[1] < $pt[2]-$ctr[2] < $z[0])
+               			{
+					$count++;
+		                }
+			}
+			if($count>$max){
+				$max=$count;
+				$maxnum=$i;
+			}
+		}
+	}
+	if($maxnum == -1){
+		return 0;
+	}
+	else{
+		push(@ans,$sp[$maxnum][0]);
+		bomb($sp[$maxnum][0],$dd,$x[0],$x[1],$y[0],$y[1],$z[0],$z[1]);
+		return 1;
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+
+

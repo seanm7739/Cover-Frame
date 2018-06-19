@@ -1,0 +1,72 @@
+NEP660103 Principal component III (Sneath, 1966)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+  -0.110   0.079  -0.136  -0.285  -0.184  -0.067  -0.246  -0.073   0.320   0.001
+  -0.008   0.049  -0.041   0.438  -0.016  -0.153  -0.208   0.493   0.381  -0.155
+
+%%GRAR740102 Polarity (Grantham, 1974)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+     8.1    10.5    11.6    13.0     5.5    10.5    12.3     9.0    10.4     5.2
+     4.9    11.3     5.7     5.2     8.0     9.2     8.6     5.4     6.2     5.9
+
+%%PRAM900101 Hydrophobicity (Prabhakaran, 1990)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+   -6.70   51.50   20.10   38.50   -8.40   17.20   34.30   -4.20   12.60    -13.
+  -11.70   36.80  -14.20  -15.50    0.80   -2.50     -5.   -7.90    2.90  -10.90
+
+%%SNEP660103 Principal component III (Sneath, 1966)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+  -0.110   0.079  -0.136  -0.285  -0.184  -0.067  -0.246  -0.073   0.320   0.001
+  -0.008   0.049  -0.041   0.438  -0.016  -0.153  -0.208   0.493   0.381  -0.155
+
+%%NOZY710101 Transfer energy, organic solvent/water (Nozaki-Tanford, 1971)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+     0.5     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.5     1.8
+     1.8     0.0     1.3     2.5     0.0     0.0     0.4     3.4     2.3     1.5
+
+%%SNEP660101 Principal component I (Sneath, 1966)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+   0.239   0.211   0.249   0.171   0.220   0.260   0.187   0.160   0.205   0.273
+   0.281   0.228   0.253   0.234   0.165   0.236   0.213   0.183   0.193   0.255
+
+%%EISD860101 Solvation free energy (Eisenberg-McLachlan, 1986)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+    0.67    -2.1    -0.6    -1.2    0.38   -0.22   -0.76      0.    0.64     1.9
+     1.9   -0.57     2.4     2.3     1.2    0.01    0.52     2.6     1.6     1.5
+
+%%FASG890101 Hydrophobicity index (Fasman, 1989)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+   -0.21    2.11    0.96    1.36   -6.04    1.52    2.30    0.00   -1.23   -4.81
+   -4.68    3.88   -3.66   -4.65    0.75    1.74    0.78   -3.32   -1.01   -3.50
+
+%%CHAM820102 Free energy of solution in water, kcal/mole (Charton-Charton, 1982)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+  -0.368   -1.03      0.    2.06    4.53   0.731    1.77  -0.525      0.   0.791
+    1.07      0.   0.656    1.06   -2.24  -0.524      0.    1.60    4.91   0.401
+
+%%HOPT810101 Hydrophilicity value (Hopp-Woods, 1981)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+    -0.5     3.0     0.2     3.0    -1.0     0.2     3.0     0.0    -0.5    -1.8
+    -1.8     3.0    -1.3    -2.5     0.0     0.3    -0.4    -3.4    -2.3    -1.5
+
+%%BASU050101 Interactivity scale obtained from the contact matrix (Bastolla et al., 2005)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+  0.1366  0.0363 -0.0345 -0.1233  0.2745  0.0325 -0.0484 -0.0464  0.0549  0.4172
+  0.4251 -0.0101  0.1747  0.4076  0.0019 -0.0433  0.0589  0.2362  0.3167  0.4084
+
+%%SNEP660104 Principal component IV (Sneath, 1966)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+  -0.062  -0.167   0.166  -0.079   0.380  -0.025  -0.184  -0.017   0.056  -0.309
+  -0.264  -0.371   0.077   0.074  -0.036   0.470   0.348   0.050   0.220  -0.212
+
+%%JOND750101 Hydrophobicity (Jones, 1975)
+I    A/L     R/K     N/M     D/F     C/P     Q/S     E/T     G/W     H/Y     I/V
+    0.87    0.85    0.09    0.66    1.52    0.00    0.67    0.10    0.87    3.15
+    2.17    1.64    1.67    2.87    2.77    0.07    0.07    3.77    2.67    1.87
+	
+
+
+
+
+
+
+
